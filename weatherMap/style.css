@@ -1,0 +1,617 @@
+/* ============================================
+   Reset de Estilos Globais
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   Variáveis CSS (Tema)
+   ============================================ */
+:root {
+    --primary-color: #1e88e5;
+    --secondary-color: #ffa726;
+    --success-color: #43a047;
+    --error-color: #e53935;
+    --background: #f5f5f5;
+    --surface: #ffffff;
+    --surface-dark: #eeeeee;
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+}
+
+/* ============================================
+   Estilos Gerais do Corpo
+   ============================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-attachment: fixed;
+}
+
+/* ============================================
+   Container Principal
+   ============================================ */
+.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* ============================================
+   Seção de Busca
+   ============================================ */
+.search-section {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-lg);
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.city-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 14px 18px;
+    border: 2px solid var(--surface-dark);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: var(--surface);
+}
+
+.city-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.1);
+}
+
+.search-btn {
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--primary-color), #1565c0);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   Cidades Populares
+   ============================================ */
+.popular-cities {
+    margin-top: 20px;
+}
+
+.popular-cities p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.city-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.city-quick-btn {
+    padding: 10px 18px;
+    background: var(--surface-dark);
+    border: 2px solid transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.city-quick-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   Loading Indicator
+   ============================================ */
+.loading-indicator {
+    text-align: center;
+    padding: 40px;
+    color: white;
+}
+
+.loading-indicator.hidden {
+    display: none;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Mensagem de Erro
+   ============================================ */
+.error-message {
+    background: var(--error-color);
+    color: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    animation: slideDown 0.3s ease;
+}
+
+.error-message.hidden {
+    display: none;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   Estado Inicial (Vazio)
+   ============================================ */
+.initial-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.initial-state.hidden {
+    display: none;
+}
+
+.empty-state {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+}
+
+.empty-state h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.empty-state p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   Seção de Clima
+   ============================================ */
+.weather-section {
+    animation: fadeIn 0.4s ease;
+}
+
+.weather-section.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   Imagem da Cidade
+   ============================================ */
+.weather-image-container {
+    position: relative;
+    height: 300px;
+    background: var(--surface-dark);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-lg);
+}
+
+.city-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 40px 20px 20px;
+}
+
+.image-overlay h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   Container de Clima Principal
+   ============================================ */
+.weather-container {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+   Clima Atual
+   ============================================ */
+.current-weather {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid var(--surface-dark);
+}
+
+.weather-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.temperature-section {
+    display: flex;
+    align-items: flex-start;
+}
+
+.current-temperature {
+    font-size: 4.5rem;
+    font-weight: 300;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.temp-unit {
+    font-size: 1.5rem;
+    margin-left: 5px;
+    color: var(--text-secondary);
+    margin-top: 10px;
+}
+
+.weather-description {
+    flex: 1;
+    min-width: 200px;
+}
+
+.description-text {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.feels-like {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   Grade de Detalhes de Clima
+   ============================================ */
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.detail-card {
+    background: linear-gradient(135deg, var(--primary-color), #1565c0);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.detail-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.detail-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.detail-label {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* ============================================
+   Seção de Previsão
+   ============================================ */
+.forecast-section {
+    margin-top: 40px;
+}
+
+.forecast-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.forecast-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.forecast-card {
+    background: linear-gradient(135deg, var(--surface-dark), white);
+    border: 2px solid var(--surface-dark);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    transition: var(--transition);
+    cursor: default;
+}
+
+.forecast-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.forecast-date {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.forecast-icon {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.forecast-temp {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.forecast-temp-max {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.forecast-temp-min {
+    color: var(--text-secondary);
+}
+
+.forecast-rain {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+footer {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 30px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 40px;
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   Responsividade
+   ============================================ */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .city-input {
+        min-width: 100%;
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+
+    .weather-main {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .current-temperature {
+        font-size: 3.5rem;
+    }
+
+    .image-overlay h2 {
+        font-size: 2rem;
+    }
+
+    .weather-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .forecast-container {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .search-section {
+        padding: 20px;
+    }
+
+    .weather-container {
+        padding: 20px;
+    }
+
+    .weather-image-container {
+        height: 200px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .city-buttons {
+        flex-wrap: wrap;
+    }
+
+    .city-quick-btn {
+        flex: 0 0 calc(50% - 5px);
+    }
+
+    .current-temperature {
+        font-size: 2.5rem;
+    }
+
+    .description-text {
+        font-size: 1.1rem;
+    }
+
+    .weather-details {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .detail-card {
+        padding: 15px;
+    }
+
+    .detail-icon {
+        font-size: 1.5rem;
+    }
+
+    .detail-value {
+        font-size: 1rem;
+    }
+
+    .image-overlay h2 {
+        font-size: 1.5rem;
+    }
+
+    .weather-image-container {
+        height: 150px;
+    }
+}
